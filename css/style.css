@@ -1,0 +1,9 @@
+#block {
+    display: flex;
+    justify-content: center;
+}
+
+#map {
+    width: 600px;
+    height: 400px;
+}

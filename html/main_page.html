@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Map Statistics</title>
+    <link type="text/css" rel="stylesheet" href="../css/style.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=2ffaa914-2559-427a-8b7a-0d874a17ad3e&lang=ru_RU"
+            type="text/javascript">
+    </script>
+    <script type="text/javascript" src="../js/script.js"></script>
+</head>
+<body onload="getStatistics()">
+<div id="block">
+    <div id="map"></div>
+    <div id="statistics">
+        <table>
+            <tr>
+                <td>Статистика</td>
+            </tr>
+            <tr>
+                <td>Количество маршрутов</td>
+                <td id="routesCountOutput">0</td>
+            </tr>
+            <tr>
+                <td>Среднее расстояние</td>
+                <td id="averageDistanceOutput">0</td>
+            </tr>
+            <tr>
+                <td>Количество маршрутов до 2 км</td>
+                <td id="countRoutesUpTo2kmOutput">0</td>
+            </tr>
+            <tr>
+                <td>Количество маршрутов от 2 до 5 км</td>
+                <td id="countRoutesFrom2To5kmOutput">0</td>
+            </tr>
+            <tr>
+                <td>Количество маршрутов от 5 км</td>
+                <td id="countRoutesUpTo5kmOutput">0</td>
+            </tr>
+        </table>
+        <div id="reset" onclick="resetRoutes()">
+            <button>Сбросить</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
