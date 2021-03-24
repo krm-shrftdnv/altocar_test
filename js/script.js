@@ -57,7 +57,7 @@ function sendCoordinates(coordinates) {
     formData.append('endPoint', coordinates['endPoint']);
     xhr.send(formData);
     xhr.onload = function () {
-        fillStatistics(xhr.response);
+        fillStatistics(JSON.parse(xhr.response));
     };
 }
 
@@ -66,12 +66,11 @@ function getStatistics() {
     xhr.open('get', '/index.php?statistics=1');
     xhr.send();
     xhr.onload = function () {
-        fillStatistics(xhr.response);
+        fillStatistics(JSON.parse(xhr.response));
     };
 }
 
-function fillStatistics(statisticsJson) {
-    let statistics = JSON.parse(statisticsJson);
+function fillStatistics(statistics) {
     document.getElementById('routesCountOutput').innerText = statistics['routes_count'];
     document.getElementById('averageDistanceOutput').innerText = statistics['average_distance'];
     document.getElementById('countRoutesUpTo2kmOutput').innerText = statistics['count_routes_up_to_2_km'];
@@ -89,10 +88,12 @@ function resetStatistics() {
     let xhr = new XMLHttpRequest();
     xhr.open('get', '/index.php?reset=1');
     xhr.send();
-    document.getElementById('routesCountOutput').innerText = '0';
-    document.getElementById('averageDistanceOutput').innerText = '0';
-    document.getElementById('countRoutesUpTo2kmOutput').innerText = '0';
-    document.getElementById('countRoutesFrom2To5kmOutput').innerText = '0';
-    document.getElementById('countRoutesUpTo5kmOutput').innerText = '0';
+    fillStatistics({
+        'routes_count': 0,
+        'average_distance': 0,
+        'count_routes_up_to_2_km': 0,
+        'count_routes_from_2_to_5_km': 0,
+        'count_routes_up_to_5_km': 0
+    })
     lastCoordinate = undefined;
 }
